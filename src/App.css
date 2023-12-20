@@ -1,0 +1,58 @@
+body{
+  margin: 5px 0;
+}
+
+
+.cabecera {
+  background-image: url("/bg-pizza.jpg");
+  padding: 2rem;
+  background-size: cover;
+  font-size: 1.2em;
+  color: white;
+}
+
+.titulos {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card{
+  border-radius: 8px;
+  border: 1px solid #cccccc;
+  padding: 5px;
+  box-sizing: border-box;
+  width: 400px;
+  transition: all linear 200ms;
+}
+.card:hover{
+  box-shadow: 1px 1px 10px rgba(0,0,0,.3);
+  cursor: pointer;
+}
+
+.buttons{
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.name-price{
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-horizontal {
+  display: flex;
+  
+}
+
+.cardbody-horizontal{
+  border-radius: 8px;
+  border: 1px solid #cccccc;
+  padding: 5px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.carrito-items img{
+  width: 70px;
+}
