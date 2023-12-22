@@ -6,7 +6,7 @@ import { Button } from "react-bootstrap";
 import Alert from "react-bootstrap/Alert";
 
 const Cart = () => {
-  const { dataItemCarrito, setDataItemCarrito, dataCarrito } =
+  const { dataPizza,dataItemCarrito, setDataItemCarrito, dataCarrito } =
     useContext(ApiContext);
   const [groupedCarritoItem, setGoupedCarritoItem] = useState([]);
 
@@ -23,9 +23,9 @@ const Cart = () => {
           name: curr.name,
           img: curr.img,
           quantity: 1,
-          total: curr.price,
+          total:  curr.price,
         });
-      }
+      } 
       return acc;
     }, []);
 
@@ -34,38 +34,31 @@ const Cart = () => {
 
   //  funcion agregarItem y quitarItem aca...
 
-// Función para agregar un item al carrito
-const agregarItems = (id) => {
-  const newCarritoItem = [...dataItemCarrito];
-  const existingItem = newCarritoItem.find((item) => item.id === id);
+  //logica de agregar al carrito
+  const addCarrito = (id) => {
+    setDataItemCarrito([...dataItemCarrito, id]);
+    alert("Item agregado!");
+  };
 
-  if (existingItem) {
-    existingItem.quantity++;
-    existingItem.total += existingItem.price;
-  } else {
-    const pizza = dataPizza.find((p) => p.id === id); // Busca la pizza en dataPizza
-    newCarritoItem.push({
-      id: pizza.id,
-      name: pizza.name,
-      img: pizza.img,
-      quantity: 1,
-      total: pizza.price,
-    });
-  }
+  //logica de identificar CUAL PIZZA VA AL CARRITO...
+  const handleAddCarrito = (id) => {
+    const selectedPizza = dataPizza.find((c) => c.id === id);
+    if (selectedPizza) {
+      addCarrito(selectedPizza);
+    }
+  };
 
-  setDataItemCarrito(newCarritoItem); // Actualiza el estado del carrito
-};
-
-// Función para quitar un item del carrito
-const quitarItems = (id) => {
+// fx para quitar un item del carrito
+const removeCarrito = (id) => {
   const newCarritoItem = [...dataItemCarrito];
   const existingItem = newCarritoItem.find((item) => item.id === id);
 
   if (existingItem && existingItem.quantity > 1) {
     existingItem.quantity--;
-    existingItem.total -= existingItem.price;
+    
   } else if (existingItem) {
     newCarritoItem.splice(newCarritoItem.indexOf(existingItem), 1);
+    alert("Item quitado!");
   }
 
   setDataItemCarrito(newCarritoItem); // Actualiza el estado del carrito
@@ -94,7 +87,8 @@ const quitarItems = (id) => {
           >
             <div className="carrito-items">
               <img className="pe-2" src={item.img} alt={item.name}></img>
-              {`${item.name} (x${item.quantity})`}
+              {`${item.name} `}
+              {/* (x${item.quantity}) */}
             </div>
             <div className="d-flex justify-content-between">
               <Badge bg="dark" pill>
@@ -103,14 +97,14 @@ const quitarItems = (id) => {
             </div>
             <div className="d-flex justify-content-between">
               <Button variant="outline-danger"
-              onClick={() => quitarItems(item.id)}
+              onClick={() => removeCarrito(item.id)}
               >-</Button>
               <Badge bg="dark" pill>
                 {item.quantity}
               </Badge>
               <Button
                 variant="outline-success"
-                onClick={() => agregarItems(item.id)}
+                onClick={() => handleAddCarrito(item.id)}
               >
                 +
               </Button>

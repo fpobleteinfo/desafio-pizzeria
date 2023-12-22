@@ -32,7 +32,6 @@ const ApiProvider = ({ children }) => {
 
     });
     return total;
-    //setDataCarrito(total)
     
   };
 
