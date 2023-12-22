@@ -4,6 +4,7 @@ import ListGroup from "react-bootstrap/ListGroup";
 import Badge from "react-bootstrap/Badge";
 import { Button } from "react-bootstrap";
 import Alert from "react-bootstrap/Alert";
+import { ToastContainer, toast } from 'react-toastify';
 
 const Cart = () => {
   const { dataPizza,dataItemCarrito, setDataItemCarrito, dataCarrito } =
@@ -37,7 +38,16 @@ const Cart = () => {
   //logica de agregar al carrito
   const addCarrito = (id) => {
     setDataItemCarrito([...dataItemCarrito, id]);
-    alert("Item agregado!");
+    toast.success('🍕 Pizza agregada!', {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      });
   };
 
   //logica de identificar CUAL PIZZA VA AL CARRITO...
@@ -58,7 +68,16 @@ const removeCarrito = (id) => {
     
   } else if (existingItem) {
     newCarritoItem.splice(newCarritoItem.indexOf(existingItem), 1);
-    alert("Item quitado!");
+    toast.warn('🍕 Elemento eliminado :(!', {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      });
   }
 
   setDataItemCarrito(newCarritoItem); // Actualiza el estado del carrito
@@ -116,6 +135,7 @@ const removeCarrito = (id) => {
         </p>
         <Button variant="info">💸 Ir al Pago</Button>
       </ListGroup>
+      <ToastContainer />
     </>
   );
 };

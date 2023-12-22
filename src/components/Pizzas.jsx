@@ -3,6 +3,7 @@ import Card from "react-bootstrap/Card";
 import { Button } from "react-bootstrap";
 import { ApiContext } from "../context/ApiContext";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
 
 const Pizzas = () => {
   const { dataPizza, dataItemCarrito, setDataItemCarrito } =
@@ -17,7 +18,16 @@ const Pizzas = () => {
   //logica de agregar al carrito
   const addCarrito = (item) => {
     setDataItemCarrito([...dataItemCarrito, item]);
-    alert("Item agregado!");
+    toast.success('🍕 Pizza agregada!', {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      });
   };
 
   //logica de identificar CUAL PIZZA VA AL CARRITO...
@@ -63,6 +73,7 @@ const Pizzas = () => {
                 </div>
               </Card.Body>
             </Card>
+            <ToastContainer />
           </div>
         ))}
       </div>
