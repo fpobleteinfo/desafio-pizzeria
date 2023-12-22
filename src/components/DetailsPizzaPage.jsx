@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import { ApiContext } from "../context/ApiContext";
+import { ToastContainer, toast } from 'react-toastify';
 
 const DetailsPizzaPage = () => {
   const { id } = useParams();
@@ -33,7 +34,16 @@ const DetailsPizzaPage = () => {
 
   const addCarrito = (item) => {
     setDataItemCarrito([...dataItemCarrito, item]);
-    alert("Item agregado!");
+    toast.success('🍕 Pizza agregada!', {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      });
     //console.log(item)
   };
 
@@ -81,6 +91,7 @@ const DetailsPizzaPage = () => {
                     <Button variant="danger" onClick={handleAddCarrito}>
                       🛒 Añadir al carrito
                     </Button>
+                    <ToastContainer />
                   </div>
                 </div>
               </div>
