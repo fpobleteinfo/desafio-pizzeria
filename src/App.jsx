@@ -2,10 +2,11 @@ import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Navigation from "./components/Navigation";
 import HomePage from "./views/HomePage";
-import DetailsPizzaPage from "./views/DetailsPizzaPage";
+import DetailsPizzaPage from "./components/DetailsPizzaPage";
 import Cart from "./views/Cart";
 import NotFound from "./views/NotFound";
 import ApiProvider from "./context/ApiContext";
+
 
 function App() {
   return (

@@ -9,6 +9,7 @@ const Pizzas = () => {
     useContext(ApiContext);
   const navigate = useNavigate();
 
+
   const verMas = (id) => {
     navigate(`/pizza/${id}`);
   };

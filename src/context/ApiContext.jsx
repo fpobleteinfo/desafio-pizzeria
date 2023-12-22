@@ -7,7 +7,7 @@ const ApiProvider = ({ children }) => {
   const [dataItemCarrito, setDataItemCarrito] = useState([]);
   const [dataSelectedPizza, setDataSelectedPizza] = useState({});
 
-  const url = "pizzas.json";
+  const url = "/pizzas.json";
 
   const apiData = async () => {
     try {
@@ -24,9 +24,6 @@ const ApiProvider = ({ children }) => {
     }
   };
 
-  useEffect(() => {
-    apiData();
-  }, [])
 
   const calcularTotalCarrito = () => {
     let total = 0;
@@ -41,10 +38,13 @@ const ApiProvider = ({ children }) => {
 
   // Actualizar el total del carrito en el contexto
   useEffect(() => {
+    apiData();
     const totalCarrito = calcularTotalCarrito();
     setDataCarrito(totalCarrito);
-  }, [dataItemCarrito, setDataCarrito]); 
+  }, [dataItemCarrito, setDataCarrito]); //useEffect se va a ejecutar si se cumplen estan condiciones.
 
+
+  
   return (
 
       <ApiContext.Provider
